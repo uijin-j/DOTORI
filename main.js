@@ -1,7 +1,8 @@
+var myTimer;
 swal("향학로에 사는 귀여운 청설모를 위해 도로리를 주워주세요!")
 .then((value) => {
     makeDotori();
-    var myTimer = setInterval(fallDotori, 2000); //1초마다 반복
+    myTimer = setInterval(fallDotori, 1000); //1초마다 반복
     timer();
 });
 
@@ -21,11 +22,10 @@ function makeDotori() {
         pickSnd.play();
         dotori.parentNode.removeChild(dotori);
         count += 1;
-        count_text.textContent = "준운 도토리 : " + count + "개";
     }
 
     dotori.addEventListener('transitionend', function() {
-        console.log("끝!")
+        console.log(dotori);
         dotori.parentNode.removeChild(dotori);
     });
 
@@ -39,7 +39,7 @@ function fallDotori() {
     }
 }
 
-var sec = 30;
+var sec = 20;
 var t;
 
 function timer() {
@@ -48,9 +48,11 @@ function timer() {
 
 function add() {
     tick();
-    time.textContent = "00:" + sec;
+    time.textContent = "00:" + (sec > 9 ? sec : "0" + sec);
     if(sec == 0) {
+        document.getElementsByClassName('dotori').remove();
         clearTimeout(t);
+        clearInterval(myTimer);
         swal(count+"개나 주우셨네요!", "청설모들이 따뜻한 겨울을 보낼 수 있게 되었어요:)");
     } else {
         timer();
@@ -59,4 +61,17 @@ function add() {
 
 function tick(){
     sec--;
+    console.log(sec);
+}
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
 }

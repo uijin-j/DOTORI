@@ -15,7 +15,8 @@ html, body, #container {
 
 #container {
     position: relative;
-    background-color: rgba( 255, 255, 255, 0.3 );
+    text-align: center;
+    background-color: rgba( 256, 256, 256, 0.2 );
 }
 
 .dotori {
@@ -32,18 +33,12 @@ html, body, #container {
     animation-timing-function: linear;
 }
 
-#count_text {
-    padding-top: 5px;
-    padding-left: 10px;
-    font-weight : 700;
-    font-size: 1.3em;
-}
-
 #time {
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 230px;
+    padding-left: 18px;
     font-weight : 700;
-    font-size: 1.5em;
+    font-size:10em;
+    color: white;
 }
 
 @keyframes fall{
